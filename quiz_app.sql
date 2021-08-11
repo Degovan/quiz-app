@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 19 Jul 2021 pada 14.34
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.3.14
+-- Host: localhost
+-- Waktu pembuatan: 11 Agu 2021 pada 11.44
+-- Versi server: 10.6.3-MariaDB
+-- Versi PHP: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -57,7 +56,7 @@ CREATE TABLE `answers` (
   `quiz_id` bigint(20) UNSIGNED NOT NULL,
   `question_id` bigint(20) UNSIGNED NOT NULL,
   `user_id` bigint(20) UNSIGNED NOT NULL,
-  `option` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `option` char(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -67,12 +66,8 @@ CREATE TABLE `answers` (
 --
 
 INSERT INTO `answers` (`id`, `quiz_id`, `question_id`, `user_id`, `option`, `created_at`, `updated_at`) VALUES
-(16, 3, 2, 2, 'C', '2021-07-19 11:58:31', '2021-07-19 11:58:31'),
-(17, 3, 3, 2, 'A', '2021-07-19 11:58:31', '2021-07-19 11:58:31'),
-(18, 3, 4, 2, 'C', '2021-07-19 11:58:31', '2021-07-19 11:58:31'),
-(19, 3, 2, 3, 'C', '2021-07-19 12:03:49', '2021-07-19 12:03:49'),
-(20, 3, 3, 3, 'C', '2021-07-19 12:03:50', '2021-07-19 12:03:50'),
-(21, 3, 4, 3, 'A', '2021-07-19 12:03:50', '2021-07-19 12:03:50');
+(28, 6, 6, 10, 'D', '2021-08-11 04:42:03', '2021-08-11 04:42:03'),
+(29, 6, 7, 10, NULL, '2021-08-11 04:42:03', '2021-08-11 04:42:03');
 
 -- --------------------------------------------------------
 
@@ -157,7 +152,9 @@ CREATE TABLE `questions` (
 INSERT INTO `questions` (`id`, `quiz_id`, `number`, `question_title`, `option_a`, `option_b`, `option_c`, `option_d`, `key`, `score`, `created_at`, `updated_at`) VALUES
 (2, 3, 1, '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis sed laboriosam itaque, voluptates fugiat consequuntur doloremque dignissimos incidunt saepe vitae.<br></p>', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br></p>', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br></p>', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br></p>', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br></p>', 'C', 10, '2021-07-19 03:34:51', '2021-07-19 03:54:00'),
 (3, 3, 2, '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis sed laboriosam itaque, voluptates fugiat consequuntur doloremque dignissimos incidunt saepe vitae.<br></p>', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit.&nbsp;<br></p>', '<p><span style=\"font-size: 14.4px;\">Lorem ipsum dolor sit amet consectetur adipisicing elit.&nbsp;</span><br></p>', '<p><span style=\"font-size: 14.4px;\">Lorem ipsum dolor sit amet consectetur adipisicing elit.&nbsp;</span><br></p>', '<p><span style=\"font-size: 14.4px;\">Lorem ipsum dolor sit amet consectetur adipisicing elit.&nbsp;</span><br></p>', 'C', 10, '2021-07-19 03:38:40', '2021-07-19 03:38:40'),
-(4, 3, 2, '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis sed laboriosam itaque, voluptates fugiat consequuntur doloremque dignissimos incidunt saepe vitae.<br></p>', '<p>Pilihan A</p>', '<p><span style=\"font-size: 14.4px;\">Pilihan B</span><br></p>', '<p><span style=\"font-size: 14.4px;\">Pilihan C</span><br></p>', '<p><span style=\"font-size: 14.4px;\">Pilihan D</span><br></p>', 'A', 10, '2021-07-19 04:04:03', '2021-07-19 04:04:03');
+(4, 3, 2, '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis sed laboriosam itaque, voluptates fugiat consequuntur doloremque dignissimos incidunt saepe vitae.<br></p>', '<p>Pilihan A</p>', '<p><span style=\"font-size: 14.4px;\">Pilihan B</span><br></p>', '<p><span style=\"font-size: 14.4px;\">Pilihan C</span><br></p>', '<p><span style=\"font-size: 14.4px;\">Pilihan D</span><br></p>', 'A', 10, '2021-07-19 04:04:03', '2021-07-19 04:04:03'),
+(6, 6, 0, '<p>Haidsaofs?</p>', '<p>dhsaofsa</p>', '<p>odsauir</p>', '<p>ureoau</p>', '<p>jdiasofa</p>', 'D', 20, '2021-08-11 04:00:44', '2021-08-11 04:00:44'),
+(7, 6, 1, '<p>fiysarea?</p>', '<p>dpwirpwq</p>', '<p>oreopur</p>', '<p>osjfa</p>', '<p>jfihfa</p>', 'B', 20, '2021-08-11 04:01:14', '2021-08-11 04:01:14');
 
 -- --------------------------------------------------------
 
@@ -181,7 +178,8 @@ CREATE TABLE `quizzes` (
 --
 
 INSERT INTO `quizzes` (`id`, `title`, `instructions`, `number_of_question`, `access_type`, `due_date`, `created_at`, `updated_at`) VALUES
-(3, 'Judul Quiz Kedua', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit maiores tempora assumenda sit omnis maxime voluptas quo incidunt quibusdam, officia dicta! Sequi officiis veritatis inventore hic animi eligendi harum minima!<br></p>', 3, 1, '2021-07-26 20:00:00', '2021-07-19 03:04:00', '2021-07-19 04:12:44');
+(3, 'Judul Quiz Kedua', '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit maiores tempora assumenda sit omnis maxime voluptas quo incidunt quibusdam, officia dicta! Sequi officiis veritatis inventore hic animi eligendi harum minima!<br></p>', 3, 1, '2021-08-10 19:56:58', '2021-07-19 03:04:00', '2021-07-19 04:12:44'),
+(6, 'Test Quiz', '<p>Kerjakan aja mah, ribed amat</p>', 2, 1, '2021-08-11 11:40:00', '2021-08-11 03:59:35', '2021-08-11 04:08:18');
 
 -- --------------------------------------------------------
 
@@ -203,8 +201,12 @@ CREATE TABLE `quiz_attempts` (
 --
 
 INSERT INTO `quiz_attempts` (`id`, `quiz_id`, `user_id`, `attempt_at`, `created_at`, `updated_at`) VALUES
-(3, 3, 2, '2021-07-19 18:58:09', '2021-07-19 11:58:09', '2021-07-19 11:58:09'),
-(4, 3, 3, '2021-07-19 19:03:45', '2021-07-19 12:03:45', '2021-07-19 12:03:45');
+(130, 6, 10, '2021-08-11 11:39:37', '2021-08-11 04:39:37', '2021-08-11 04:39:37'),
+(131, 6, 10, '2021-08-11 11:40:08', '2021-08-11 04:40:08', '2021-08-11 04:40:08'),
+(132, 6, 10, '2021-08-11 11:40:19', '2021-08-11 04:40:19', '2021-08-11 04:40:19'),
+(133, 6, 10, '2021-08-11 11:40:31', '2021-08-11 04:40:31', '2021-08-11 04:40:31'),
+(134, 6, 10, '2021-08-11 11:40:43', '2021-08-11 04:40:43', '2021-08-11 04:40:43'),
+(135, 6, 10, '2021-08-11 11:41:01', '2021-08-11 04:41:01', '2021-08-11 04:41:01');
 
 -- --------------------------------------------------------
 
@@ -228,8 +230,8 @@ CREATE TABLE `quiz_results` (
 --
 
 INSERT INTO `quiz_results` (`id`, `quiz_id`, `user_id`, `point`, `correct_answer`, `max_points`, `created_at`, `updated_at`) VALUES
-(4, 3, 2, 10, 1, 30, '2021-07-19 11:58:31', '2021-07-19 11:58:31'),
-(5, 3, 3, 30, 3, 30, '2021-07-19 12:03:50', '2021-07-19 12:03:50');
+(8, 6, 10, 0, 0, 40, '2021-08-11 04:38:44', '2021-08-11 04:38:44'),
+(9, 6, 10, 20, 1, 40, '2021-08-11 04:42:03', '2021-08-11 04:42:03');
 
 -- --------------------------------------------------------
 
@@ -254,7 +256,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `username`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
 (2, 'Muhammad Renaldy Ramadhan', 'mrenaldyr', NULL, '$2y$10$/hJoyJeDpupAH/oEur9/8uw8Tc2SY9.jAyeZlaHSxEQu6af0yxGya', NULL, '2021-07-18 08:02:03', '2021-07-18 08:02:03'),
-(3, 'Users01', 'user01', NULL, '$2y$10$.XSz8GGikY8LAxXzLw85W.Fu94RTGWRYcQf4dmuQja/qkHgDwaESq', NULL, '2021-07-19 12:03:26', '2021-07-19 12:03:26');
+(3, 'Users01', 'user01', NULL, '$2y$10$.XSz8GGikY8LAxXzLw85W.Fu94RTGWRYcQf4dmuQja/qkHgDwaESq', NULL, '2021-07-19 12:03:26', '2021-07-19 12:03:26'),
+(10, 'test', 'tes', NULL, '$2y$10$.wTqqgno1/SNrvnSEBcazu0VpUlMf8/LdTB34yjKb0x7sLaICllBW', NULL, '2021-08-09 14:19:16', '2021-08-11 03:43:59');
 
 --
 -- Indexes for dumped tables
@@ -337,13 +340,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `admins`
 --
 ALTER TABLE `admins`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT untuk tabel `failed_jobs`
@@ -361,31 +364,31 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT untuk tabel `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `quizzes`
 --
 ALTER TABLE `quizzes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `quiz_attempts`
 --
 ALTER TABLE `quiz_attempts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 
 --
 -- AUTO_INCREMENT untuk tabel `quiz_results`
 --
 ALTER TABLE `quiz_results`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

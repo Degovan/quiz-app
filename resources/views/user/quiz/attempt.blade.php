@@ -7,7 +7,7 @@
         $row = $questions->first();
     @endphp
     <div class="row col-12 mt-2">
-        <form action="{{ route("quiz.result",["id" => $quiz->id]) }}" method="post" style="width: 100%">
+        <form action="{{ route("quiz.result",["id" => $quiz->id]) }}" method="post" style="width: 100%" id="question-form">
             @foreach ($quiz->question as $key => $q)
                 <div class="col-sm-10">
                     <div class="card mb-3" id="q{{ $key+1 }}">

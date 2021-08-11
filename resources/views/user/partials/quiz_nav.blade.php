@@ -44,7 +44,8 @@
 
         if (distance < 0) {
             clearInterval(x);
-            document.getElementsById("demo").innerHTML = 'EXPIRED';
+            document.getElementById("demo").innerHTML = 'EXPIRED';
+            document.getElementById('question-form').submit();
         }
     }, 1000);
 

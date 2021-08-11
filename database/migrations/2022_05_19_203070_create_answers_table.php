@@ -21,7 +21,7 @@ class CreateAnswersTable extends Migration
             $table->foreign("question_id")->references("id")->on("questions")->onDelete("cascade");
             $table->foreignId("user_id");
             $table->foreign("user_id")->references("id")->on("users")->onDelete("cascade");
-            $table->char("option");
+            $table->char("option")->nullable();
             $table->timestamps();
         });
     }
