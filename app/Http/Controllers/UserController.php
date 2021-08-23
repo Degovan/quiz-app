@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-use Barryvdh\DomPDF\PDF;
 
 
 
@@ -20,7 +20,7 @@ class UserController extends Controller
     public function index()
     {
         $user = User::paginate(10);
-        return view("admin.data-peserta",[
+        return view("admin.data-peserta", [
             "user" => $user
         ]);
     }
@@ -52,11 +52,11 @@ class UserController extends Controller
             "password_confirmation" => "required"
         ]);
 
-        $data = $request->except("password_confirmation","_token");
+        $data = $request->except("password_confirmation", "_token");
         $data["password"] = Hash::make($request->password);
-        
+
         User::create($data);
-        return redirect()->route("account.user")->with("user_create","Berhasil membuat user baru!");
+        return redirect()->route("account.user")->with("user_create", "Berhasil membuat user baru!");
     }
 
     /**
@@ -79,7 +79,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view("admin.user.edit",[
+        return view("admin.user.edit", [
             "user" => $user
         ]);
     }
@@ -95,7 +95,7 @@ class UserController extends Controller
     {
         $request->validate([
             "name" => "required|max:50",
-            "username" => "required|unique:users,username,".$id,
+            "username" => "required|unique:users,username," . $id,
             "no_hp" => "required|max:50",
             "wilayah" => "required|max:50",
             "password" => "confirmed",
@@ -109,7 +109,7 @@ class UserController extends Controller
         }
 
         $user->update($data);
-        return redirect()->route("account.user")->with("user_updated","Berhasil mengupdate user baru!");
+        return redirect()->route("account.user")->with("user_updated", "Berhasil mengupdate user baru!");
     }
 
     /**
@@ -123,7 +123,15 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
 
-        return redirect()->route("account.user")->with("user_deleted","Berhasil menghapus user baru!");
+        return redirect()->route("account.user")->with("user_deleted", "Berhasil menghapus user baru!");
     }
-   
+
+    public function createPDF()
+    {
+        $users = User::all();
+        $pdf = PDF::loadView('pdf.user', compact('users'))
+            ->setPaper('a4', 'landscape');
+
+        return $pdf->download('Peserta.pdf');
+    }
 }
