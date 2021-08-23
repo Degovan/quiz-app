@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Quiz;
 use App\Models\QuizResult;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 
 class QuizRankingController extends Controller
@@ -16,8 +17,8 @@ class QuizRankingController extends Controller
     public function index($id)
     {
         $quizzes = Quiz::findOrFail($id);
-        $results = QuizResult::with("user")->orderBy("point","DESC")->where("quiz_id",$quizzes->id)->get();
-        return view("admin.quiz.ranking",[
+        $results = QuizResult::with("user")->orderBy("point", "DESC")->where("quiz_id", $quizzes->id)->get();
+        return view("admin.quiz.ranking", [
             "quizzes" => $quizzes,
             "results" => $results
         ]);
@@ -25,8 +26,8 @@ class QuizRankingController extends Controller
     public function hasil($id)
     {
         $quizzes = Quiz::findOrFail($id);
-        $results = QuizResult::with("user")->orderBy("point","DESC")->where("quiz_id",$quizzes->id)->get();
-        return view("admin.quiz.hasil",[
+        $results = QuizResult::with("user")->orderBy("point", "DESC")->where("quiz_id", $quizzes->id)->get();
+        return view("admin.quiz.hasil", [
             "quizzes" => $quizzes,
             "results" => $results
         ]);
@@ -96,5 +97,15 @@ class QuizRankingController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function createPDF($id)
+    {
+        $quiz = Quiz::findOrFail($id);
+        $results = QuizResult::with("user")->orderBy("point", "DESC")->where("quiz_id", $quiz->id)->get();
+        $pdf = PDF::loadView('pdf.quiz_rank', compact('results', 'quiz'))
+            ->setPaper('a4', 'landscape');
+
+        return $pdf->download("Hasil Ujian {$quiz->title}.pdf");
     }
 }

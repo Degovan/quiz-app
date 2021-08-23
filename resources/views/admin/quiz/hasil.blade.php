@@ -5,6 +5,10 @@
     <div id="underline"></div>
     <div class="card card-body">
         <div class="table-responsive">
+            <div class="d-flex justify-content-start">
+                <a href="{{ route('quiz.pdf', $quizzes->id) }}" class="btn btn-primary">Export
+                    PDF</a>
+            </div>
             <table class="table table-bordered">
                 <thead>
                     <tr>
