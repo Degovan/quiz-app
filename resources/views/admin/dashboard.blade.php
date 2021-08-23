@@ -1,8 +1,58 @@
-@extends('layouts.template')
+@extends('layouts.template-admin')
 
 @section('content')
     <h4>Dashboard</h4>
     <div id="underline"></div>
+    <div class="row">
+            <div class="col-xl-4 col-md-6 mb-4">
+         
+                <div class="card border-left-primary shadow">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="h1 mb-0 font-weight-bold text-gray-800">{{$jumlah_quiz}}</div>
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Quiz/Ujian</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-file-alt fa-4x "></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          
+            </div>
+            <div class="col-xl-4 col-md-6 mb-4" >
+                <div class="card border-left-primary  shadow style="background-color: #00a65a;">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="h1 mb-0 font-weight-bold text-gray-800">{{$jumlah_peserta}}</div>
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah Total Peserta</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-user-friends fa-4x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card border-left-success shadow">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="h1 mb-0 font-weight-bold text-gray-800">{{$avg_result}}</div>
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Rata Rata Skor</div>
+                            </div>
+                            <div class="col-auto">
+                            <i class=""></i>
+                            <i class="fas fa-star-half-alt fa-4x"></i>                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
     <div class="row">
         <div class="col-12">
             <div class="alert alert-primary" role="alert">
@@ -11,7 +61,8 @@
             </div>
         </div>
     </div>
-    <div class="row">
+
+    <!-- <div class="row">
         <div class="col-12">
             <h5>
                 <i class="fas fa-info-circle mr-1"></i>
@@ -34,7 +85,7 @@
                 </div>
             @endif
         </div>
-    </div>
+    </div> -->
     <div class="row">
         @forelse ($quizzes as $quiz)
             <div class="col-lg-3 col-md-6 col-12">

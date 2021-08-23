@@ -22,6 +22,15 @@ class QuizRankingController extends Controller
             "results" => $results
         ]);
     }
+    public function hasil($id)
+    {
+        $quizzes = Quiz::findOrFail($id);
+        $results = QuizResult::with("user")->orderBy("point","DESC")->where("quiz_id",$quizzes->id)->get();
+        return view("admin.quiz.hasil",[
+            "quizzes" => $quizzes,
+            "results" => $results
+        ]);
+    }
 
     /**
      * Show the form for creating a new resource.

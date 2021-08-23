@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +26,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::middleware(['auth:admin'])->group(function () {
     Route::get("/dashboard",[App\Http\Controllers\DashboardController::class,"index"])->name("admin.dashboard");
+    Route::get("/bank-soal",[App\Http\Controllers\DashboardController::class,"bank"])->name("admin.bank-soal");
+    Route::get("/peringkat",[App\Http\Controllers\DashboardController::class,"peringkat"])->name("admin.peringkat");
+    Route::get("/hasil-ujian",[App\Http\Controllers\DashboardController::class,"hasil"])->name("admin.hasil");
     Route::get("/account/user",[App\Http\Controllers\UserController::class,"index"])->name("account.user");
     Route::get("/account/user/create",[App\Http\Controllers\UserController::class,"create"])->name("account.user.create");
     Route::post("/account/user/store",[App\Http\Controllers\UserController::class,"store"])->name("account.user.store");
@@ -52,6 +57,8 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::delete("/question/delete/{quiz_id}/{id}",[App\Http\Controllers\QuestionController::class,"destroy"])->name("question.delete");
 
     Route::get("/quiz/ranking/{id}",[App\Http\Controllers\QuizRankingController::class,"index"])->name("quiz.ranking");
+    Route::get("/quiz/hasil/{id}",[App\Http\Controllers\QuizRankingController::class,"hasil"])->name("quiz.hasil");
+
 });
 
 Route::middleware(['auth:web'])->group(function () {
@@ -60,3 +67,5 @@ Route::middleware(['auth:web'])->group(function () {
     Route::post("/user/quiz-attempt/{id}",[App\Http\Controllers\UserQuizController::class,"attempt"])->name("quiz.attempt");
     Route::post("/user/quiz-result/{id}",[App\Http\Controllers\UserQuizController::class,"result"])->name("quiz.result");
 });
+
+Route::get('/user/pdf', [UserController::class, "createPDF"])->name("user.pdf");

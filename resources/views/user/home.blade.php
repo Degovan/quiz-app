@@ -4,7 +4,7 @@
     <h4>Dashboard User</h4>
     <div id="underline"></div>
     <div class="alert alert-primary mb-4" role="alert">
-        <h5>Selamat Datang , {{ Auth::user()->name }}</h5>
+        <h5>Selamat Datang, {{ Auth::user()->name }}</h5>
         <p class="mb-0">Di halaman ini kamu dapat melihat quiz yang dapat dikerjakan . User hanya bisa melihat quiz yang akses nya sudah dibuka oleh admin . User hanya bisa melakukan quiz sebanyak 1 kali.</p>
     </div>
     <h5>

@@ -1,4 +1,4 @@
-@extends('layouts.template')
+@extends('layouts.template-admin')
 
 @section('content')
     <h4>{{ $quiz->title }}</h4>
@@ -41,7 +41,7 @@
     @endif
     
     <div class="row">
-        <div class="col-lg-9">
+        <div class="container-fluid">
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-end">

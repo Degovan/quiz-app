@@ -122,7 +122,7 @@ class QuizController extends Controller
         $quiz = Quiz::findOrFail($id);
         $quiz->delete();
 
-        return redirect()->route("admin.dashboard")->with("delete","Berhasil menghapus quiz!");
+        return redirect()->route("admin.bank")->with("delete","Berhasil menghapus quiz!");
     }
 
     public function open($id)

@@ -40,6 +40,8 @@
                             <th>No</th>
                             <th>Nama</th>
                             <th>Username</th>
+                            <th>NO HP</th>
+                            <th>Wilayah</th>
                             <th>Created At</th>
                             <th>Action</th>
                         </tr>
@@ -50,6 +52,8 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->username }}</td>
+                                <td>{{ $item->no_hp }}</td>
+                                <td>{{ $item->wilayah }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>
                                     <a href="{{ route("account.admin.edit",["id" => $item->id]) }}" class="btn-sm btn btn-success">

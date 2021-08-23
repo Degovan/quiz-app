@@ -32,6 +32,7 @@
                 Tambah User
             </a>
         </div>
+
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="datatable">
@@ -40,6 +41,7 @@
                             <th>No</th>
                             <th>Nama</th>
                             <th>Username</th>
+                            <th>No HP</th>
                             <th>Created At</th>
                             <th>Action</th>
                         </tr>

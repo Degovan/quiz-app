@@ -6,6 +6,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+use Barryvdh\DomPDF\PDF;
+
+
+
 class UserController extends Controller
 {
     /**
@@ -15,8 +19,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::all();
-        return view("admin.user.index",[
+        $user = User::paginate(10);
+        return view("admin.data-peserta",[
             "user" => $user
         ]);
     }
@@ -42,6 +46,8 @@ class UserController extends Controller
         $request->validate([
             "name" => "required|max:50",
             "username" => "required|unique:users,username",
+            "no_hp" => "required|max:50",
+            "wilayah" => "required|max:50",
             "password" => "required|min:8|confirmed",
             "password_confirmation" => "required"
         ]);
@@ -90,6 +96,8 @@ class UserController extends Controller
         $request->validate([
             "name" => "required|max:50",
             "username" => "required|unique:users,username,".$id,
+            "no_hp" => "required|max:50",
+            "wilayah" => "required|max:50",
             "password" => "confirmed",
         ]);
 
@@ -117,4 +125,5 @@ class UserController extends Controller
 
         return redirect()->route("account.user")->with("user_deleted","Berhasil menghapus user baru!");
     }
+   
 }

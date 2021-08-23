@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BeSmart Admin Dashboard</title>
-    <link rel="shortcut icon" href="{{ asset("img/logo.png") }}">
+    <title>Tryout UNY</title>
     <link rel="stylesheet" href="{{ asset("css/app.css") }}">
     <link rel="stylesheet" href="{{ asset("css/style.css") }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
@@ -14,22 +13,22 @@
     @stack('style')
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg px-3 py-1" style="background-color: #0076fa;">
-        <div class="container">
+    <nav class="navbar navbar-expand-lg px-2 py-1" style="background-color: #0076fa;">
+        <div class="container" style="margin-bottom: -18px;">
             @if (Auth::guard("web")->check())
-                <a class="navbar-brand" href="{{ route("user.dashboard") }}">
+                <a class="navbar-brand" href="{{ route('user.dashboard') }}">
             @else
-                <a class="navbar-brand" href="{{ route("admin.dashboard") }}">
+                <a class="navbar-brand" href="{{ route('admin.dashboard') }}">
             @endif
                 <div class="row">
                     <div class="col-2">
                         <span id="icon-navbar">
-                            <img src="{{ asset('img/logo.png') }}" width="45px" class="mt-2">
+                            <img src="{{ asset('assets/logo.png') }}" width="45px" >
                         </span>
                     </div>
-                    <div class="col-3 ml-1">
-                        <p class="mb-0 text-white"><span id="title-name" class="font-weight-bold">B</span>e<span id="title-name" class="font-weight-bold">S</span>mart</p>
-                        <p class="text-white mini-title">Learning Management System</p>
+                    <div class="col-3 ml-3">
+                        <p class="mb-0 text-white"><span id="title-name" class="font-weight-bold">TryOut UNY</p>
+                        <p class="text-white mini-title">Computer Base Test</p>
                     </div>
                 </div>
             </a>
