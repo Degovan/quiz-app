@@ -43,6 +43,10 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::put("/account/admin/update/{id}", [App\Http\Controllers\AdminController::class, "update"])->name("account.admin.update");
     Route::delete("/account/admin/delete/{id}", [App\Http\Controllers\AdminController::class, "destroy"])->name("account.admin.delete");
 
+    Route::get('/attendance', [App\Http\Controllers\AttendanceController::class, 'index'])->name('attendance.index');
+    Route::get('/attendance/{id}', [App\Http\Controllers\AttendanceController::class, 'show'])->name('attendance.show');
+    Route::get('/attendance/{id}/pdf', [App\Http\Controllers\AttendanceController::class, 'createPDF'])->name('attendance.pdf');
+
     Route::get("/quiz/create", [App\Http\Controllers\QuizController::class, "create"])->name("quiz.create");
     Route::post("/quiz/store", [App\Http\Controllers\QuizController::class, "store"])->name("quiz.store");
     Route::get("/quiz/show/{id}", [App\Http\Controllers\QuizController::class, "show"])->name("quiz.show");

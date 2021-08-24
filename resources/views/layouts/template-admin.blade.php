@@ -68,7 +68,7 @@
                                         <a class="main-menu-link" href="index.html" style="padding: 2px; font-size:10px;margin-right: 10px;">Peserta <i class="fa fa-angle-down"></i></a>
                                         <ul class="sub-menu">
                                             <li><a class="active" style="color: blue; background-color: blanchedalmond;" href="{{route('account.user')}}">Daftar Peserta</a></li>
-                                            <li><a href="#">Daftar Kehadiran</a></li>
+                                            <li><a href="{{ route('attendance.index') }}">Daftar Kehadiran</a></li>
                                         </ul>
                                     </li>
                                     <li class="has-dropdown">
